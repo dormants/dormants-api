@@ -14,4 +14,12 @@ export class UsersService extends BaseService<UserEntity> {
   async list(): Promise<UserEntity[]> {
     return this.repository.find();
   }
+
+  async create(params: Partial<UserEntity>): Promise<UserEntity> {
+    return this.repository.save(new UserEntity(params));
+  }
+
+  async count(params: Partial<UserEntity>): Promise<number> {
+    return this.repository.count(params);
+  }
 }
