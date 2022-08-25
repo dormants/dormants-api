@@ -5,6 +5,7 @@ import {
   CoursesController,
   PloggingsController,
   UsersController,
+  GroupController,
 } from './controllers';
 
 import { AppController } from './app.controller';
@@ -18,6 +19,7 @@ import { AppService } from './app.service';
     CoursesController,
     PloggingsController,
     UsersController,
+    GroupController,
   ],
   providers: [AppService],
 })
