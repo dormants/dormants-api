@@ -63,3 +63,17 @@ jobs:
           AWS_EC2_METADATA_DISABLED: true
         run: |
           aws s3 cp ./dormants-api.zip s3://dormants-api-source
+
+      # Deploy to Elastic Beanstalk
+      # application_name과 environment_name을 꼭 확인하자!
+      # 해당 부분은 꼭 같아야 한다!!
+      - name: Deploy to EB
+        uses: einaregilsson/beanstalk-deploy@v14
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: dormant-api
+          environment_name: Dormantsapi-env-1
+          region: ${{ secrets.AWS_REGION }}
+          version_label: ${{github.event.release.tag_name}}
+          deployment_package: dormants-api.zip
