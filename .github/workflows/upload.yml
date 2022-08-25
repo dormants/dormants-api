@@ -43,12 +43,32 @@ jobs:
           echo "URL=$URL" >> .env
           echo "PORT=$PORT" >> .env
           echo "TZ=$TZ" >> .env
+          echo "MYSQL_HOST=$MYSQL_HOST" >> .env
+          echo "MYSQL_PORT=$MYSQL_PORT" >> .env
+          echo "MYSQL_PASSWORD=$MYSQL_PASSWORD" >> .env
+          echo "MYSQL_USERNAME=$MYSQL_USERNAME" >> .env
+          echo "MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD" >> .env
+          echo "MYSQL_DATABASE=$MYSQL_DATABASE" >> .env
+          echo "MYSQL_TYPEORM_ENTITIES=$MYSQL_TYPEORM_ENTITIES" >> .env
+          echo "MYSQL_LOGGING=$MYSQL_LOGGING" >> .env
+          echo "MYSQL_LOGGING=$MYSQL_LOGGING" >> .env
+          echo "MYSQL_MIGRATIONS_RUN=$MYSQL_MIGRATIONS_RUN" >> .env
+          echo "MYSQL_CACHES=$MYSQL_CACHES" >> .env
         env:
           NODE_ENV: production
           NAME: dormants-api
           URL: ${{ secrets.URL }}
           PORT: ${{ secrets.PORT }}
-          TZ: ${{ secrets.TZ }}
+          MYSQL_HOST: ${{ secrets.MYSQL_HOST }}
+          MYSQL_PORT: ${{ secrets.MYSQL_PORT }}
+          MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+          MYSQL_USERNAME: ${{ secrets.MYSQL_USERNAME }}
+          MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+          MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
+          MYSQL_TYPEORM_ENTITIES: ${{ secrets.MYSQL_TYPEORM_ENTITIES }}
+          MYSQL_LOGGING: ${{ secrets.MYSQL_LOGGING }}
+          MYSQL_MIGRATIONS_RUN: ${{ secrets.MYSQL_MIGRATIONS_RUN }}
+          MYSQL_CACHES: ${{ secrets.MYSQL_CACHES }}
 
       - name: Build
         run: npm run build
@@ -70,8 +90,8 @@ jobs:
       - name: Deploy to EB
         uses: einaregilsson/beanstalk-deploy@v14
         with:
-          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws_access_key: ${{ secrets.AWS_EB_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_EB_SECRET_ACCESS_KEY }}
           application_name: dormant-api
           environment_name: Dormantsapi-env-1
           region: ${{ secrets.AWS_REGION }}
