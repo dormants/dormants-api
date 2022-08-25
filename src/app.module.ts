@@ -4,6 +4,7 @@ import {
   TagsController,
   CoursesController,
   PloggingsController,
+  UsersController,
 } from './controllers';
 
 import { AppController } from './app.controller';
@@ -16,6 +17,7 @@ import { AppService } from './app.service';
     TagsController,
     CoursesController,
     PloggingsController,
+    UsersController,
   ],
   providers: [AppService],
 })
