@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Param } from '@nestjs/common';
+import { Body, Controller, Post, Param, Get } from '@nestjs/common';
 
 import { MockCourses, Plogging, ploggingStorage } from 'src/constants/mock';
 
@@ -22,5 +22,10 @@ export class PloggingsController {
     plogging.pickup();
     plogging.checkFinished();
     return plogging;
+  }
+
+  @Get('/:id')
+  get(@Param('id') id: string): any {
+    return ploggingStorage.find(Number(id));
   }
 }
