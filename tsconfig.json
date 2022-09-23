@@ -15,8 +15,7 @@
       "@config/*": ["src/config/*"],
       "@common/*": ["src/common/*"],
       "@providers/*": ["src/providers/*"],
-      "@user/*": ["src/modules/user/*"],
-      "@course/*": ["src/modules/course/*"]
+      "@user/*": ["src/modules/user/*"]
     },
     "incremental": true,
     "skipLibCheck": true,
